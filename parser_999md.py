@@ -118,7 +118,7 @@ class Parser999md:
                 page = 1
 
                 link = lambda: base_link + f'&page={page}' if '?' in base_link else base_link + f'?page={page}'
-                resp = requests.get(link(), timeout=3)
+                resp = requests.get(link())
                 if resp.status_code // 100 != 2:
                     return
                 soup = bs4.BeautifulSoup(resp.text, 'lxml')        
@@ -162,7 +162,7 @@ class Parser999md:
                     resp = requests.get(link())
                     if resp.status_code // 100 != 2:
                         break
-                    soup = bs4.BeautifulSoup(resp.text, 'lxml', timeout=3) 
+                    soup = bs4.BeautifulSoup(resp.text, 'lxml') 
             except Exception as e:
                 print(e)  
             if len(contacts) > limit and limit != -1:
@@ -190,7 +190,7 @@ class Parser999md:
         os.remove(filename)
 
     def __parse_current_page(self, link: str):
-        resp = requests.get(link, timeout=3)
+        resp = requests.get(link, timeout=5)
         resp.raise_for_status()
         soup = bs4.BeautifulSoup(resp.text, 'lxml')
 
