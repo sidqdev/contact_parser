@@ -145,7 +145,7 @@ class Parser999md:
                         except:
                             pass
                         finally:
-                            time.sleep(1)
+                            time.sleep(0.5)
                         
                         contacts = self.remove_duplicates_by_phone(contacts)
                     if len(contacts) > limit and limit != -1:
