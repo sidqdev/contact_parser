@@ -58,7 +58,7 @@ class ParserMakler:
                 page = 0
 
                 link = lambda: base_link + f'&page={page}' if '?' in base_link else base_link + f'?page={page}'
-                resp = requests.get(link(), headers=headers)
+                resp = requests.get(link(), headers=headers, timeout=3)
                 if resp.status_code // 100 != 2:
                     return
                 soup = bs4.BeautifulSoup(resp.text, 'lxml')
@@ -93,7 +93,7 @@ class ParserMakler:
                         break
 
                     page += 1
-                    resp = requests.get(link(), headers=headers)
+                    resp = requests.get(link(), headers=headers, timeout=3)
                     if resp.status_code // 100 != 2:
                         break
                     soup = bs4.BeautifulSoup(resp.text, 'lxml')   
@@ -101,7 +101,7 @@ class ParserMakler:
                 print(e)
             if len(contacts) > limit and limit != -1:
                 break
-            
+
         filename = uuid4().hex + '.xlsx'
         filename = f"{base_link.split('/')[-1]}_{limit}_{filename}"
         workbook = xlsxwriter.Workbook(filename)
@@ -124,7 +124,7 @@ class ParserMakler:
         os.remove(filename)
 
     def __parse_current_page(self, link: str):
-        resp = requests.get(link, headers=headers)
+        resp = requests.get(link, headers=headers, timeout=3)
         resp.raise_for_status()
         soup = bs4.BeautifulSoup(resp.text, 'lxml')
 
