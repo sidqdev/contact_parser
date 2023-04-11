@@ -57,7 +57,6 @@ class ParserMakler:
                 base_link = link
                 page = 0
 
-                print(1)
                 link = lambda: base_link + f'&page={page}' if '?' in base_link else base_link + f'?page={page}'
                 resp = requests.get(link(), headers=headers)
                 if resp.status_code // 100 != 2:
@@ -66,7 +65,6 @@ class ParserMakler:
 
 
                 while len(contacts) < limit or limit == -1:
-                    print(1)
                     elements = soup.find('div', {'class': 'ls-detail'})
                     if elements is None:
                         break
@@ -75,17 +73,15 @@ class ParserMakler:
                     if elements is None:
                         break
                     
-                    print(2)
                     for element in elements:
                         if len(contacts) > limit and limit != -1:
                             break
 
                         try:
                             current_link = 'https://makler.md' + element.find('a', {'class': 'ls-detail_anUrl'})['href']
-                            print(current_link)
                             info = self.__parse_current_page(current_link)
-                            print(info)
                             contacts.append(info)
+                            print(len(contacts), 'of', limit, '- Makler')
                         except:
                             pass
                         finally:

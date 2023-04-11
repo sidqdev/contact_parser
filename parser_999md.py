@@ -140,15 +140,14 @@ class Parser999md:
                             current_link = 'https://m.999.md' + element.find('a', {'class': 'block-items__item__link js-item-ad'})['href']
                             
                             info = self.__parse_current_page(current_link)
-                            print(info)
                             contacts.append(info)
+                            print(len(contacts), 'of', limit, '- 999')
                         except:
                             pass
                         finally:
                             time.sleep(1)
                         
                         contacts = self.remove_duplicates_by_phone(contacts)
-                    print(len(contacts))
                     if len(contacts) > limit and limit != -1:
                         break
                     
