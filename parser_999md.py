@@ -1,7 +1,6 @@
 import requests
 import bs4
 from telebot import TeleBot
-from telebot.types import InputFile
 from threading import Thread
 import os
 from uuid import uuid4
