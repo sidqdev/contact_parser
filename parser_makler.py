@@ -124,7 +124,7 @@ class ParserMakler:
         os.remove(filename)
 
     def __parse_current_page(self, link: str):
-        resp = requests.get(link, headers=headers)
+        resp = requests.get(link, headers=headers, timeout=5)
         resp.raise_for_status()
         soup = bs4.BeautifulSoup(resp.text, 'lxml')
 
