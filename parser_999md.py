@@ -190,7 +190,7 @@ class Parser999md:
         os.remove(filename)
 
     def __parse_current_page(self, link: str):
-        resp = requests.get(link, timeout=5)
+        resp = requests.get(link)
         resp.raise_for_status()
         soup = bs4.BeautifulSoup(resp.text, 'lxml')
 

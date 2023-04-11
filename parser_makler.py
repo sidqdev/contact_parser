@@ -58,7 +58,7 @@ class ParserMakler:
                 page = 0
 
                 link = lambda: base_link + f'&page={page}' if '?' in base_link else base_link + f'?page={page}'
-                resp = requests.get(link(), headers=headers, timeout=3)
+                resp = requests.get(link(), headers=headers)
                 if resp.status_code // 100 != 2:
                     return
                 soup = bs4.BeautifulSoup(resp.text, 'lxml')
@@ -93,7 +93,7 @@ class ParserMakler:
                         break
 
                     page += 1
-                    resp = requests.get(link(), headers=headers, timeout=3)
+                    resp = requests.get(link(), headers=headers)
                     if resp.status_code // 100 != 2:
                         break
                     soup = bs4.BeautifulSoup(resp.text, 'lxml')   
@@ -124,7 +124,7 @@ class ParserMakler:
         os.remove(filename)
 
     def __parse_current_page(self, link: str):
-        resp = requests.get(link, headers=headers, timeout=3)
+        resp = requests.get(link, headers=headers)
         resp.raise_for_status()
         soup = bs4.BeautifulSoup(resp.text, 'lxml')
 
