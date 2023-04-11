@@ -13,26 +13,7 @@ headers = {
 }
 
 class ParserMakler:
-    categories = [
-        {"title": "Недвижемость", "id": "makler_nedviga", "links": [
-            'https://makler.md/ru/real-estate/real-estate-for-sale/apartments-for-sale',
-            'https://makler.md/ru/real-estate/real-estate-for-rent/apartments-for-rent',
-            'https://makler.md/ru/real-estate/real-estate-for-sale/houses-for-sale',
-            'https://makler.md/ru/real-estate/real-estate-for-rent/houses-for-rent',
-            'https://makler.md/ru/real-estate/real-estate-for-sale/premises-for-sale',
-            'https://makler.md/ru/real-estate/real-estate-for-rent/premises-for-rent',
-            'https://makler.md/ru/real-estate/real-estate-for-sale/plots-for-sale',
-        ]},
-        {
-            "title": "Техника", "id": "makler_tech", "links": [
-                'https://makler.md/ru/computers-and-office-equipment',
-                'https://makler.md/ru/audio-photo-video',
-                'https://makler.md/ru/phones-and-communications',
-                'https://makler.md/ru/household-products',
-                'https://makler.md/ru/industrial-and-commercial-equipment',
-            ]
-        }
-    ]
+    categories = [{'title': 'Помощь беженцам', 'id': 'maklerf6a66ca4c1884aedacfbd2e05b532353', 'links': ['https://makler.md//ru/assistance-refugees']}, {'title': 'Транспорт', 'id': 'makler77c2767eb95f4ab38c42e8398ff5a80d', 'links': ['https://makler.md//ru/transport']}, {'title': 'Работа и обучение', 'id': 'makler097072c994034c7299d24f4347627384', 'links': ['https://makler.md//ru/job']}, {'title': 'Услуги', 'id': 'makler3d13bb1dc93f4a8d9781b4d728211979', 'links': ['https://makler.md//ru/services']}, {'title': 'Строительство и ремонт', 'id': 'maklera579e8a48a444f25940ff7847345aa5f', 'links': ['https://makler.md//ru/construction-and-repair']}, {'title': 'Мебель и интерьер', 'id': 'makler78dc3c92149240688a873ddff4127742', 'links': ['https://makler.md//ru/furniture-and-interior']}, {'title': 'Одежда, обувь, аксессуары', 'id': 'maklerfb7dd92ddd214d3aad8230145ce0fdab', 'links': ['https://makler.md//ru/clothing-footwear-accessories']}, {'title': 'Все для детей', 'id': 'maklere7d201cfe8ab4df396b5dac8e39ee6f8', 'links': ['https://makler.md//ru/products-for-children']}, {'title': 'Handmade', 'id': 'makler9f9bd724371c48c1abff303769c269d2', 'links': ['https://makler.md//ru/handmade']}, {'title': 'Компьютеры, оргтехника и IT', 'id': 'makler7810004a671844558138a4e38cd9d41d', 'links': ['https://makler.md//ru/computers-and-office-equipment']}, {'title': 'Аудио, видео, фото, ТВ', 'id': 'makler297f9864b10b4c4bb33745e3bc0f5ae4', 'links': ['https://makler.md//ru/audio-photo-video']}, {'title': 'Телефоны и связь', 'id': 'makler6d9f75f43a434f0f8ee426f856a42659', 'links': ['https://makler.md//ru/phones-and-communications']}, {'title': 'Бытовая техника', 'id': 'makler4bfb1758bf234f8f945fc81b554921ec', 'links': ['https://makler.md//ru/household-products']}, {'title': 'Оборудование и приборы', 'id': 'makler1746777ec20646b7a941c5b95b5484d6', 'links': ['https://makler.md//ru/industrial-and-commercial-equipment']}, {'title': 'Туризм, спорт и отдых', 'id': 'maklerbc24520c557a4e71b9fa33061c55ca33', 'links': ['https://makler.md//ru/sport-and-leisure']}, {'title': 'Растения и животные', 'id': 'makler5696b18bdf0f4b2daced6c2ab2dea205', 'links': ['https://makler.md//ru/plants-and-animals']}, {'title': 'Дачное и сельское хозяйство', 'id': 'maklerd4a512cf5fcd4c00b2543eef9e0ad915', 'links': ['https://makler.md//ru/agribusiness']}, {'title': 'Знакомства', 'id': 'makler855f0d2f49474f5db4564b07de7d1354', 'links': ['https://makler.md//ru/dating']}, {'title': 'Свадьбы, праздники и подарки', 'id': 'makler012124df24fa4ceba628effa877b4377', 'links': ['https://makler.md//ru/weddings-and-celebration']}]
 
     def get_link_by_id(self, id: str):
         for i in self.categories:
