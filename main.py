@@ -52,6 +52,7 @@ def select_parser(callback: CallbackQuery):
     for i in categories:
         markup.add(InlineKeyboardButton(**i))
     
+    markup.add(InlineKeyboardButton("Ввести ссылку", callback_data="input_links"))
     bot.edit_message_text(
         text="Выберете категорию",
         chat_id=callback.message.chat.id,
@@ -71,10 +72,33 @@ def select_category(callback: CallbackQuery):
     )
 
 
+@bot.callback_query_handler(lambda e: e.data == 'input_links')
+def input_links_menu(callback: CallbackQuery):
+    bot.edit_message_text(
+        text="Введите ссылку",
+        chat_id=callback.message.chat.id,
+        message_id=callback.message.message_id,
+        reply_markup=None
+    )
+
+
+@bot.message_handler(func=lambda x: parser_storage.get(x.chat.id).check_link(x.text))
+def input_count(message: Message):
+    category_storage.update({message.chat.id: [message.text]})
+    bot.send_message(
+        text="Введите количество номеров",
+        chat_id=message.chat.id,
+        reply_markup=None
+    )
+
+
 @bot.message_handler(func=lambda x: parser_storage.get(x.chat.id) and category_storage.get(x.chat.id) and x.text.isdigit())
 def input_count(message: Message):
     parser = parser_storage.pop(message.chat.id)
-    link = parser.get_link_by_id(category_storage.get(message.chat.id))
+    if type(category_storage.get(message.chat.id)) is list:
+        link = category_storage.get(message.chat.id)
+    else:
+        link = parser.get_link_by_id(category_storage.get(message.chat.id))
     if parser.parse(link, int(message.text), message.chat.id):
         bot.send_message(message.chat.id, "Ожидайте ответа")
     else:

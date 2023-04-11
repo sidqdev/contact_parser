@@ -3,3 +3,4 @@ requests
 pytelegrambotapi
 XlsxWriter
 beautifulsoup4
+lxml
