@@ -2,7 +2,7 @@ import requests
 import bs4
 from uuid import uuid4
 
-base = 'https://makler.md/'
+base = 'https://makler.md'
 
 soup = bs4.BeautifulSoup(requests.get('https://makler.md/ru').text, 'lxml')
 
