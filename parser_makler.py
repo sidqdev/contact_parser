@@ -99,7 +99,9 @@ class ParserMakler:
                     soup = bs4.BeautifulSoup(resp.text, 'lxml')   
             except Exception as e:
                 print(e)
-
+            if len(contacts) > limit and limit != -1:
+                break
+            
         filename = uuid4().hex + '.xlsx'
         filename = f"{base_link.split('/')[-1]}_{limit}_{filename}"
         workbook = xlsxwriter.Workbook(filename)
