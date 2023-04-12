@@ -6,6 +6,7 @@ import os
 from uuid import uuid4
 import xlsxwriter
 import time
+import random
 
 
 headers = {
@@ -33,6 +34,16 @@ class ParserMakler:
 
     def __init__(self, bot: TeleBot) -> None:
         self.bot: TeleBot = bot
+        all_links = list()
+        for i in self.categories:
+            all_links.extend(i.get('links'))
+        random.shuffle(all_links)
+        self.categories.append({
+            'title': 'Все категории',
+            'id': 'makler_all',
+            'links': all_links
+        })
+
 
     def check_link(self, link: str):
         return link.startswith('https://makler.md/ru')

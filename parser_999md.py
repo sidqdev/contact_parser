@@ -6,12 +6,9 @@ import os
 from uuid import uuid4
 import xlsxwriter
 import time
-
+import random
 
 class Parser999md:
-    def __init__(self, bot: TeleBot) -> None:
-        self.bot: TeleBot = bot
-
     categories = [
         {"title": "Недвижемость", "id": "999_nedviga", "links": [
             'https://m.999.md/ru/list/real-estate/apartments-and-rooms',
@@ -75,6 +72,18 @@ class Parser999md:
             "title": "Встречи", "id": "999_dates", "links": ['https://m.999.md/ru/list/dating-and-greetings/i-need-a-man', 'https://m.999.md/ru/list/dating-and-greetings/looking-for-a-woman', 'https://m.999.md/ru/list/dating-and-greetings/looking-for-friends', 'https://m.999.md/ru/list/dating-and-greetings/the-couple-met', 'https://m.999.md/ru/list/dating-and-greetings/miscellaneous', 'https://m.999.md/ru/list/dating-and-greetings/marriage-agencies']
         },
     ]
+
+    def __init__(self, bot: TeleBot) -> None:
+        self.bot: TeleBot = bot
+        all_links = list()
+        for i in self.categories:
+            all_links.extend(i.get('links'))
+        random.shuffle(all_links)
+        self.categories.append({
+            'title': 'Все категории',
+            'id': '999_all',
+            'links': all_links
+        })
 
     def get_link_by_id(self, id: str):
         for i in self.categories:
