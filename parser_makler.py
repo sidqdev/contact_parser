@@ -96,7 +96,7 @@ class ParserMakler:
                         except:
                             pass
                         finally:
-                            time.sleep(3)
+                            time.sleep(2)
                         
                         contacts = self.remove_duplicates_by_phone(contacts)
                         
