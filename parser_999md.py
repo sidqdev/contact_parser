@@ -8,6 +8,8 @@ import xlsxwriter
 import time
 import random
 
+proxies = {'http': 'http://159.223.183.111:80', 'https': 'https://5.78.94.202:8080'}
+
 class Parser999md:
     categories = [
         {"title": "Недвижемость", "id": "999_nedviga", "links": [
@@ -127,7 +129,7 @@ class Parser999md:
                 page = 1
 
                 link = lambda: base_link + f'&page={page}' if '?' in base_link else base_link + f'?page={page}'
-                resp = requests.get(link())
+                resp = requests.get(link(), proxies=proxies)
                 if resp.status_code // 100 != 2:
                     return
                 soup = bs4.BeautifulSoup(resp.text, 'lxml')        
@@ -168,7 +170,7 @@ class Parser999md:
                         break
 
                     page += 1
-                    resp = requests.get(link())
+                    resp = requests.get(link(), proxies=proxies)
                     if resp.status_code // 100 != 2:
                         break
                     soup = bs4.BeautifulSoup(resp.text, 'lxml') 
@@ -199,7 +201,7 @@ class Parser999md:
         # os.remove(filename)
 
     def __parse_current_page(self, link: str):
-        resp = requests.get(link, timeout=5)
+        resp = requests.get(link, timeout=10, proxies=proxies)
         resp.raise_for_status()
         soup = bs4.BeautifulSoup(resp.text, 'lxml')
 
