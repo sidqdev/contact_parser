@@ -132,7 +132,7 @@ class ParserMakler:
         f = open(filename, 'rb')
 
         self.bot.send_document(chat_id, f)
-        os.remove(filename)
+        # os.remove(filename)
 
     def __parse_current_page(self, link: str):
         resp = requests.get(link, headers=headers, timeout=5)

@@ -124,4 +124,4 @@ def parse_command_handler(message: Message):
     else:
         bot.send_message(message.chat.id, 'Ошибка')
 
-bot.infinity_polling()
+bot.infinity_polling(timeout=10, long_polling_timeout=5)
