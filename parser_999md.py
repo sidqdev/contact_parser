@@ -9,7 +9,7 @@ import time
 import random
 
 proxies = {'http': 'http://159.223.183.111:80', 'https': 'https://5.78.94.202:8080'}
-
+proxies = None
 class Parser999md:
     categories = [
         {"title": "Недвижемость", "id": "999_nedviga", "links": [
